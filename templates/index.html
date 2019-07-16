@@ -1,9 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <style>
+            body {
+                background: black;
+                padding: 0;
+                margin: 0;
+            }
 
+            #container {
+                display: flex;
+                justify-content: center;
+                height: 100vh;
+                align-items: center;
+            }
+
+            #container .left,
+            #container .right {
+                width: 500px;
+                height: 500px;
+                background: white;
+                margin: 10px;
+                position: relative;
+            }
+
+            #container .left .paleta {
+                position: absolute;
+                width: 40px;
+                left: -55px;
+            }
+
+            #container .left .paleta .color {
+                width: 40px;
+                height: 40px;
+                margin-bottom: 5px;
+                border-radius: 40px;
+                background: white;
+                cursor: pointer;
+                border: 3px solid white;
+                transform: translateX(0px);
+                transition: 0.2s all ease;
+            }
+
+            #container .left .paleta .color.active {
+                transform: translateX(-15px);
+            }
+
+            #container .left .paleta .color:nth-child(1){
+                background: rgb(142,181,219);
+            }
+
+            #container .left .paleta .color:nth-child(2){
+                background: rgb(212,197,184);
+            }
+
+            #container .left .paleta .color:nth-child(3){
+                background: rgb(239,223,193);
+            }
+
+            #container .left .paleta .color:nth-child(4){
+                background: rgb(213,213,214);
+            }
+
+            #container .left .paleta .color:nth-child(5){
+                background: rgb(179,200,175);
+            }
+
+            #container .left .paleta .color:nth-child(6){
+                background: rgb(238,240,192);
+            }
+
+            #container .left .paleta .color:nth-child(7){
+                background: white;
+            }
+        </style>
+
+        <script src="{{ url_for('static', filename = 'js/jquery.js') }}"></script>
+        <script src="{{ url_for('static', filename = 'js/p5.js') }}"></script>
+        <script src="{{ url_for('static', filename = 'js/scripts.js') }}"></script>
     </head>
     <body>
-        hola mundo querido
+        <div id="container">
+            <div class="left" id="canvas_container">
+                <div class="paleta">
+                    <div class="color"></div>
+                    <div class="color"></div>
+                    <div class="color active"></div>
+                    <div class="color"></div>
+                    <div class="color"></div>
+                    <div class="color"></div>
+                    <div class="color"></div>
+                </div>
+            </div>
+            <div class="right"></div>
+        </div>
     </body>
 </html>
