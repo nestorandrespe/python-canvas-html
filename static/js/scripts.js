@@ -23,15 +23,13 @@ var scketch = function(p) {
                 url: "/take_canvas",
                 data: {img: imgURL},
                 success: function(data) {
-                    console.log(data);
-                    loaded = true;
-                    // const spawn = require("child_process").spawn;
+                    // console.log(data);
+                    loaded = false;
                 },
                 error: function(data) {
-                alert('There was an error uploading your file!');
                 }
             }).done(function() {
-                console.log("Sent");
+                // console.log("enviado");
             });
         }
         
@@ -42,11 +40,25 @@ var scketch = function(p) {
         p.strokeWeight(20);
         p.line(p.pmouseX, p.pmouseY, p.mouseX, p.mouseY);
     }
+
+    p.changeColor = function(color_temp){
+        color = p.color(color_temp[0],color_temp[1],color_temp[2]);
+    }
 }
 
 var canvas_draw = new p5(scketch, 'canvas_container');
 
-$('.color').on('click', function(){
-    $('.color.active').removeClass('active');
-    $(this).addClass('active');
-});
+
+
+(function ($, root, undefined) {
+	$(function () {
+		$('.color').on('click', function(){
+            $('.color.active').removeClass('active');
+            $(this).addClass('active');
+
+            var color = $(this).attr('data-color').split(',');
+            canvas_draw.changeColor(color);
+        });
+	});
+	
+})(jQuery, this);
